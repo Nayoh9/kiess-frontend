@@ -2,6 +2,7 @@
 import Footer from "../components/Footer";
 import React, { useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
+import { Link } from "react-router-dom";
 
 // Import package
 import {
@@ -43,32 +44,53 @@ const Home = () => {
               <p>de votre match simultanément</p>
             </div>
 
-            <form className="mb-10 ml-1 flex   flex-col gap-y-2 pl-1 max-mobile:mb-8 max-mobile:ml-0 max-mobile:w-72">
+            <form className="ml-1 flex flex-col gap-y-2 pl-1 text-blackTextColor max-mobile:mb-8 max-mobile:ml-0 max-mobile:w-72">
               <input
                 type="email"
                 placeholder="Adresse mail"
-                className=" w-72 rounded-md bg-inputColor py-2 pl-5 text-black placeholder:text-gray-500 max-tablet820px:w-full"
+                className=" mb-3 w-72 rounded-md bg-inputColor py-2 pl-5 text-black placeholder:text-gray-500 max-tablet820px:w-full"
               />
-            </form>
 
-            <div className="mb-10 flex   items-center max-tablet820px:justify-center max-mobile:mb-10 max-mobile:flex-col max-mobile:items-center">
-              <motion.button
-                whileHover={{
-                  scale: 1.1,
-                  boxShadow: "0 0 10px rgba(255, 126, 95, 0.8)",
-                }}
-                whileTap={{ scale: 0.9 }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={controls}
-                transition={{ duration: 1, ease: "easeInOut" }}
-                className="mr-4 rounded-lg bg-gradient-to-tr from-kiessColor to-pinkKiess px-7 py-2 font-semibold text-white max-mobile:mb-2 max-mobile:mr-0"
-              >
-                Bientôt disponible
-              </motion.button>
-              <button className=" font-semibold text-pinkKiess ">
-                Mot de passe oublié
-              </button>
-            </div>
+              <div className="mb-3 flex">
+                <input type="checkbox" className="translate-y-1 self-start" />
+                <div className="ml-2">
+                  <p>
+                    J'accepte les{" "}
+                    <Link to={"/conditions"} className="font-bold underline">
+                      Conditions générales d'utilisation
+                    </Link>
+                  </p>
+                  <p>Sans votre accord votre compte ne pourra être créé.</p>
+                </div>
+              </div>
+
+              <div className="mb-3 flex">
+                <input type="checkbox" className="translate-y-1 self-start" />
+                <div className="ml-2 w-96">
+                  <p>
+                    J'accepte que mon adresse éléctronique soit utilisé pour
+                  </p>
+                  <p>recevoir des offres de Kiess Inc.</p>
+                </div>
+              </div>
+
+              <div className="mb-10 flex items-center max-tablet820px:justify-center max-mobile:mb-10 max-mobile:flex-col max-mobile:items-center">
+                <motion.button
+                  whileHover={{
+                    scale: 1.1,
+                    boxShadow: "0 0 10px rgba(255, 126, 95, 0.8)",
+                  }}
+                  whileTap={{ scale: 0.9 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={controls}
+                  transition={{ duration: 1, ease: "easeInOut" }}
+                  className="mr-4 rounded-lg bg-gradient-to-tr from-kiessColor to-pinkKiess px-7 py-2 font-semibold text-white max-mobile:mb-2 max-mobile:mr-0"
+                  type="submit"
+                >
+                  S'inscire à la BETA
+                </motion.button>
+              </div>
+            </form>
             <div className="flex gap-x-2 max-tablet820px:mb-10 max-tablet820px:justify-center max-mobile:mb-10">
               <a href="#">
                 <img

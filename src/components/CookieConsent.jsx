@@ -94,7 +94,7 @@ const CookieConsent = () => {
         ces objectifs. Vous pouvez choisir d'accepter, personnaliser vos
         préférences ou naviguer sans accepter les cookies non essentiels. Vos
         choix sont modifiables à tout moment via les paramètres de votre compte.
-        Vous pouvez voir nos
+        Vous pouvez voir nos{" "}
         <a
           href="/Conditions"
           style={{
@@ -107,6 +107,7 @@ const CookieConsent = () => {
         </a>
         .
       </p>
+
       <button
         onClick={handleAccept}
         style={{
