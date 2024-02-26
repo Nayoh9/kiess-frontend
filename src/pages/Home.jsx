@@ -51,7 +51,7 @@ const Home = () => {
                 className=" mb-3 w-72 rounded-md bg-inputColor py-2 pl-5 text-black placeholder:text-gray-500 max-tablet820px:w-full"
               />
 
-              <div className="mb-3 flex">
+              <div className="mb-3 ml-3 flex">
                 <input type="checkbox" className="translate-y-1 self-start" />
                 <div className="ml-2">
                   <p>
@@ -64,7 +64,7 @@ const Home = () => {
                 </div>
               </div>
 
-              <div className="mb-3 flex">
+              <div className="mb-3 ml-3 flex">
                 <input type="checkbox" className="translate-y-1 self-start" />
                 <div className="ml-2 w-96">
                   <p>
