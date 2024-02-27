@@ -1,6 +1,7 @@
 // Package import
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [isHamburgerClicked, setIsHamburgerClicked] = useState(false);
@@ -27,13 +28,13 @@ const Header = () => {
 
   return (
     <header className="mx-auto flex w-full max-w-6xl items-center text-blackTextColor max-screen1260px:max-w-3xl">
-      <a href="/">
+      <Link to={"/"}>
         <img
           src="./assets/Logo SVG.svg"
           alt="logo kiess"
           className="min-w-28"
         />
-      </a>
+      </Link>
       <nav className=" ml-auto ">
         <ul
           className={
@@ -43,26 +44,26 @@ const Header = () => {
           }
           ref={menuRef}
         >
-          <a
-            href="/features"
+          <Link
+            to={"/features"}
             className=" relative hover:text-pinkKiess max-mobile:p-3 max-mobile:hover:text-white"
           >
             <li className=" max-mobile:pb-2">Fonctionnalités</li>
             <div className=" hidden max-mobile:absolute max-mobile:-left-0 max-mobile:flex max-mobile:w-32 max-mobile:border-b max-mobile:border-solid  max-mobile:border-white max-mobile:opacity-50"></div>
-          </a>
-          <a
-            href="/conditions"
+          </Link>
+          <Link
+            to={"/conditions"}
             className=" relative hover:text-pinkKiess  max-mobile:hover:text-white"
           >
             <li className=" max-mobile:pb-2">CGU et sécurité</li>
             <div className=" absolute -left-2 hidden w-32 border-b border-solid border-white opacity-50 max-mobile:flex"></div>
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            to={"/contact"}
             className="hover:text-pinkKiess max-mobile:pb-3 max-mobile:pt-3 max-mobile:hover:text-white"
           >
             <li>Contact</li>
-          </a>
+          </Link>
         </ul>
       </nav>
 

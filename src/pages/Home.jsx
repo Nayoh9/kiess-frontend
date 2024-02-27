@@ -2,6 +2,8 @@
 import Footer from "../components/Footer";
 import React, { useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
+import { Link } from "react-router-dom";
+import { Checkbox } from "@nextui-org/react";
 
 // Import package
 import {
@@ -43,32 +45,70 @@ const Home = () => {
               <p>de votre match simultanément</p>
             </div>
 
-            <form className="mb-10 ml-1 flex   flex-col gap-y-2 pl-1 max-mobile:mb-8 max-mobile:ml-0 max-mobile:w-72">
+            <form className="ml-1 flex flex-col gap-y-2 pl-1 text-blackTextColor max-mobile:mb-8 max-mobile:ml-0 max-mobile:w-72">
               <input
                 type="email"
                 placeholder="Adresse mail"
-                className=" w-72 rounded-md bg-inputColor py-2 pl-5 text-black placeholder:text-gray-500 max-tablet820px:w-full"
+                className=" mb-3 w-72 rounded-md bg-inputColor py-2 pl-5 text-black placeholder:text-gray-500 max-tablet820px:w-full"
               />
-            </form>
 
-            <div className="mb-10 flex   items-center max-tablet820px:justify-center max-mobile:mb-10 max-mobile:flex-col max-mobile:items-center">
-              <motion.button
-                whileHover={{
-                  scale: 1.1,
-                  boxShadow: "0 0 10px rgba(255, 126, 95, 0.8)",
-                }}
-                whileTap={{ scale: 0.9 }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={controls}
-                transition={{ duration: 1, ease: "easeInOut" }}
-                className="mr-4 rounded-lg bg-gradient-to-tr from-kiessColor to-pinkKiess px-7 py-2 font-semibold text-white max-mobile:mb-2 max-mobile:mr-0"
-              >
-                Bientôt disponible
-              </motion.button>
-              <button className=" font-semibold text-pinkKiess ">
-                Mot de passe oublié
-              </button>
-            </div>
+              <div className="mb-2 ml-3 flex">
+                <Checkbox
+                  radius="none"
+                  color="default"
+                  size="sm"
+                  className="bg flex self-start pt-2 "
+                  onChange={(e) => {
+                    console.log(e.target.checked);
+                  }}
+                ></Checkbox>
+
+                <div className="ml-2">
+                  <p>
+                    J'accepte les{" "}
+                    <Link to={"/conditions"} className="font-bold underline">
+                      Conditions générales d'utilisation
+                    </Link>
+                  </p>
+                  <p>Sans votre accord votre compte ne pourra être créé.</p>
+                </div>
+              </div>
+
+              <div className="mb-2 ml-3 flex">
+                <Checkbox
+                  radius="none"
+                  color="default"
+                  size="sm"
+                  className="flex self-start pt-2"
+                  onChange={(e) => {
+                    console.log(e.target.checked);
+                  }}
+                ></Checkbox>
+                <div className="ml-2 w-96">
+                  <p>
+                    J'accepte que mon adresse éléctronique soit utilisé pour
+                  </p>
+                  <p>recevoir des offres de Kiess Inc.</p>
+                </div>
+              </div>
+
+              <div className="mb-10 flex items-center max-tablet820px:justify-center max-mobile:mb-10 max-mobile:flex-col max-mobile:items-center">
+                <motion.button
+                  whileHover={{
+                    scale: 1.1,
+                    boxShadow: "0 0 10px rgba(255, 126, 95, 0.8)",
+                  }}
+                  whileTap={{ scale: 0.9 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={controls}
+                  transition={{ duration: 1, ease: "easeInOut" }}
+                  className="mr-4 rounded-lg bg-gradient-to-tr from-kiessColor to-pinkKiess px-7 py-2 font-semibold text-white max-mobile:mb-2 max-mobile:mr-0"
+                  type="submit"
+                >
+                  S'inscire à la BETA
+                </motion.button>
+              </div>
+            </form>
             <div className="flex gap-x-2 max-tablet820px:mb-10 max-tablet820px:justify-center max-mobile:mb-10">
               <a href="#">
                 <img
@@ -90,12 +130,12 @@ const Home = () => {
             <img
               src="/assets/images-main-page/telephone.png"
               alt="telephone portable qui affiche l'application kiess"
-              className=" w-mainPhoneWidth -translate-x-10  max-screen1260px:w-72 max-screen1260px:translate-x-0 max-tablet820px:w-48 screen2000px:w-96"
+              className=" z-20 w-mainPhoneWidth -translate-x-10  max-screen1260px:w-72 max-screen1260px:translate-x-0 max-tablet820px:w-48 screen2000px:w-96"
             />
             <MouseParallaxChild
               factorX={0.2}
               factorY={0.3}
-              className="screen2000px: absolute -right-7 top-5 w-mainBadgesWidth max-screen1260px:-left-14 max-screen1260px:top-10 max-screen1260px:w-96 screen2000px:-left-28 screen2000px:w-mainAssets2000pxWidth "
+              className="screen2000px: absolute -right-7 top-5 z-30 w-mainBadgesWidth max-screen1260px:-left-14 max-screen1260px:top-10 max-screen1260px:w-96 screen2000px:-left-28 screen2000px:w-mainAssets2000pxWidth "
             >
               <img
                 src="/assets/images-main-page/Badges-devant-le-telephone.png"
@@ -105,7 +145,7 @@ const Home = () => {
             <MouseParallaxChild
               factorX={-0.3}
               factorY={-0.2}
-              className="absolute -right-12 top-0 -z-10 w-mainScreensWidth max-screen1260px:w-96 screen2000px:w-mainAssets2000pxWidth"
+              className="absolute -right-12 top-0 z-10 w-mainScreensWidth max-screen1260px:w-96 screen2000px:w-mainAssets2000pxWidth"
             >
               <img
                 src="/assets/images-main-page/Photo-derriere-le-telephone.png"
@@ -115,7 +155,7 @@ const Home = () => {
             <MouseParallaxChild
               factorX={-0.3}
               factorY={-0.2}
-              className="absolute -right-7 -top-6  w-mainScreensWidth max-screen1260px:-right-4 max-screen1260px:top-1 max-screen1260px:w-96 max-tablet820px:flex-none screen2000px:right-0 screen2000px:top-5  screen2000px:w-mainAssets2000pxWidth "
+              className="absolute -right-7 -top-6 z-30  w-mainScreensWidth max-screen1260px:-right-4 max-screen1260px:top-1 max-screen1260px:w-96 max-tablet820px:flex-none screen2000px:right-0 screen2000px:top-5  screen2000px:w-mainAssets2000pxWidth "
             >
               <img
                 src="/assets/images-main-page/Photos-devant-le-telephone.png"
