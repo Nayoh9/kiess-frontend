@@ -3,6 +3,7 @@ import Footer from "../components/Footer";
 import React, { useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { Link } from "react-router-dom";
+import { Checkbox } from "@nextui-org/react";
 
 // Import package
 import {
@@ -51,8 +52,17 @@ const Home = () => {
                 className=" mb-3 w-72 rounded-md bg-inputColor py-2 pl-5 text-black placeholder:text-gray-500 max-tablet820px:w-full"
               />
 
-              <div className="mb-3 ml-3 flex">
-                <input type="checkbox" className="translate-y-1 self-start" />
+              <div className="mb-2 ml-3 flex">
+                <Checkbox
+                  radius="none"
+                  color="default"
+                  size="sm"
+                  className="bg flex self-start pt-2 "
+                  onChange={(e) => {
+                    console.log(e.target.checked);
+                  }}
+                ></Checkbox>
+
                 <div className="ml-2">
                   <p>
                     J'accepte les{" "}
@@ -64,8 +74,16 @@ const Home = () => {
                 </div>
               </div>
 
-              <div className="mb-3 ml-3 flex">
-                <input type="checkbox" className="translate-y-1 self-start" />
+              <div className="mb-2 ml-3 flex">
+                <Checkbox
+                  radius="none"
+                  color="default"
+                  size="sm"
+                  className="flex self-start pt-2"
+                  onChange={(e) => {
+                    console.log(e.target.checked);
+                  }}
+                ></Checkbox>
                 <div className="ml-2 w-96">
                   <p>
                     J'accepte que mon adresse éléctronique soit utilisé pour
@@ -112,12 +130,12 @@ const Home = () => {
             <img
               src="/assets/images-main-page/telephone.png"
               alt="telephone portable qui affiche l'application kiess"
-              className=" w-mainPhoneWidth -translate-x-10  max-screen1260px:w-72 max-screen1260px:translate-x-0 max-tablet820px:w-48 screen2000px:w-96"
+              className=" z-20 w-mainPhoneWidth -translate-x-10  max-screen1260px:w-72 max-screen1260px:translate-x-0 max-tablet820px:w-48 screen2000px:w-96"
             />
             <MouseParallaxChild
               factorX={0.2}
               factorY={0.3}
-              className="screen2000px: absolute -right-7 top-5 w-mainBadgesWidth max-screen1260px:-left-14 max-screen1260px:top-10 max-screen1260px:w-96 screen2000px:-left-28 screen2000px:w-mainAssets2000pxWidth "
+              className="screen2000px: absolute -right-7 top-5 z-30 w-mainBadgesWidth max-screen1260px:-left-14 max-screen1260px:top-10 max-screen1260px:w-96 screen2000px:-left-28 screen2000px:w-mainAssets2000pxWidth "
             >
               <img
                 src="/assets/images-main-page/Badges-devant-le-telephone.png"
@@ -127,7 +145,7 @@ const Home = () => {
             <MouseParallaxChild
               factorX={-0.3}
               factorY={-0.2}
-              className="absolute -right-12 top-0 -z-10 w-mainScreensWidth max-screen1260px:w-96 screen2000px:w-mainAssets2000pxWidth"
+              className="absolute -right-12 top-0 z-10 w-mainScreensWidth max-screen1260px:w-96 screen2000px:w-mainAssets2000pxWidth"
             >
               <img
                 src="/assets/images-main-page/Photo-derriere-le-telephone.png"
@@ -137,7 +155,7 @@ const Home = () => {
             <MouseParallaxChild
               factorX={-0.3}
               factorY={-0.2}
-              className="absolute -right-7 -top-6  w-mainScreensWidth max-screen1260px:-right-4 max-screen1260px:top-1 max-screen1260px:w-96 max-tablet820px:flex-none screen2000px:right-0 screen2000px:top-5  screen2000px:w-mainAssets2000pxWidth "
+              className="absolute -right-7 -top-6 z-30  w-mainScreensWidth max-screen1260px:-right-4 max-screen1260px:top-1 max-screen1260px:w-96 max-tablet820px:flex-none screen2000px:right-0 screen2000px:top-5  screen2000px:w-mainAssets2000pxWidth "
             >
               <img
                 src="/assets/images-main-page/Photos-devant-le-telephone.png"
