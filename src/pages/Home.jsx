@@ -1,6 +1,9 @@
+// utils
+import baseUrl from "../baseurl";
+
 // Components import
 import Footer from "../components/Footer";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Checkbox } from "@nextui-org/react";
@@ -10,13 +13,58 @@ import {
   MouseParallaxContainer,
   MouseParallaxChild,
 } from "react-parallax-mouse";
+import axios from "axios";
 
 const Home = () => {
   const controls = useAnimation();
 
+  const [email, setEmail] = useState("");
+  const [conditions, setConditions] = useState(false);
+  const [newsletter, setNewsletter] = useState(false);
+
   useEffect(() => {
     controls.start({ opacity: 1, y: 0 });
   }, [controls]);
+
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handleConditions = (e) => {
+    setConditions(e.target.checked);
+  };
+
+  const handleNewsletter = (e) => {
+    setNewsletter(e.target.checked);
+  };
+
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+
+      const email_pattern = /^[^\s@]+@[a-z0-9]+(\.[a-z]{2,3}){1,2}$/;
+      const testEmail = email_pattern.test(email);
+
+      if (!testEmail) {
+        throw new Error("invalid e-mail address");
+      }
+
+      if (!conditions) {
+        throw new Error("conditions must be accepted");
+      }
+
+      const response = await axios.post(`${baseUrl}/user/register`, {
+        email: email,
+        conditions: conditions,
+        newsletter: newsletter,
+      });
+
+      console.log(response.data);
+    } catch (error) {
+      console.log({ message: error.message });
+    }
+  };
+
   return (
     <MouseParallaxContainer
       globalFactorX={0.1}
@@ -29,7 +77,7 @@ const Home = () => {
         transition={{ duration: 1.5, ease: "easeInOut" }}
         className="flex"
       >
-        <section className="maxscreen1260px:max-w-5xl max-tablet820px:fit  min-tablet820px:justify-center mx-auto mt-10 flex max-w-6xl items-center max-screen1260px:gap-x-10 screen2000px:gap-x-24">
+        <section className="maxscreen1260px:max-w-5xl max-tablet820px:fit min-tablet820px:justify-center mx-auto mt-10 flex max-w-6xl items-center max-screen1260px:gap-x-10 screen2000px:gap-x-24">
           <div className="mr-5 flex  flex-col max-tablet820px:w-auto">
             <div className="mb-10 mr-10 text-7xl max-tablet820px:mr-0 max-mobile:mb-5 max-mobile:flex max-mobile:justify-center">
               <img
@@ -45,11 +93,15 @@ const Home = () => {
               <p>de votre match simultanément</p>
             </div>
 
-            <form className="ml-1 flex flex-col gap-y-2 pl-1 text-blackTextColor max-mobile:mb-8 max-mobile:ml-0 max-mobile:w-72">
+            <form
+              className="ml-1 flex flex-col gap-y-2 pl-1 text-blackTextColor max-mobile:mb-8 max-mobile:ml-0 max-mobile:w-72"
+              onSubmit={handleSubmit}
+            >
               <input
                 type="email"
                 placeholder="Adresse mail"
                 className=" mb-3 w-72 rounded-md bg-inputColor py-2 pl-5 text-black placeholder:text-gray-500 max-tablet820px:w-full"
+                onChange={handleEmail}
               />
 
               <div className="mb-2 ml-3 flex">
@@ -57,10 +109,8 @@ const Home = () => {
                   radius="none"
                   color="default"
                   size="sm"
-                  className="bg flex self-start pt-2 "
-                  onChange={(e) => {
-                    console.log(e.target.checked);
-                  }}
+                  className="flex -translate-x-1 self-start "
+                  onChange={handleConditions}
                 ></Checkbox>
 
                 <div className="ml-2">
@@ -79,10 +129,8 @@ const Home = () => {
                   radius="none"
                   color="default"
                   size="sm"
-                  className="flex self-start pt-2"
-                  onChange={(e) => {
-                    console.log(e.target.checked);
-                  }}
+                  className="flex -translate-x-1 self-start "
+                  onChange={handleNewsletter}
                 ></Checkbox>
                 <div className="ml-2 w-96">
                   <p>
@@ -105,7 +153,7 @@ const Home = () => {
                   className="mr-4 rounded-lg bg-gradient-to-tr from-kiessColor to-pinkKiess px-7 py-2 font-semibold text-white max-mobile:mb-2 max-mobile:mr-0"
                   type="submit"
                 >
-                  S'inscire à la BETA
+                  S'inscrire à la BETA
                 </motion.button>
               </div>
             </form>

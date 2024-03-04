@@ -25,7 +25,7 @@ const CookieConsent = () => {
   }, [cookies]); // Se déclenche lorsque les cookies changent
 
   const handleAccept = () => {
-    const commonOptions = { path: "/", maxAge: 2592000 }; // 30 jours pour l'exemple
+    const commonOptions = { path: "/", maxAge: 300000 }; // 30 jours pour l'exemple
     setCookie("user-consent", "accepted", commonOptions);
     setCookie("session-cookies", "accepted", commonOptions);
     setCookie("persistent-cookies", "accepted", commonOptions);
@@ -47,83 +47,42 @@ const CookieConsent = () => {
   }
 
   return (
-    <div
-      style={{
-        position: "fixed",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        backgroundColor: "#fff",
-        padding: "40px",
-        zIndex: 10000,
-        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
-        borderRadius: "10px",
-        maxWidth: "500px",
-        width: "90%",
-        textAlign: "center",
-        fontFamily: "Arial, sans-serif",
-      }}
-    >
-      <div style={{ position: "absolute", top: "10px", right: "10px" }}>
-        <a
-          href="#"
-          onClick={handleDecline}
-          style={{
-            color: "#db1262",
-            textDecoration: "none",
-            fontWeight: "bold",
-          }}
-        >
-          Continuer sans accepter
-        </a>
+    <div className="fixed bottom-0 z-30 flex h-2/5 flex-col items-center justify-center border-t border-solid border-kiessColor bg-white  font-jost">
+      <div className="w-2/3 ">
+        <h2 className=" mb-5 text-xl font-bold text-secondKiessColor ">
+          KIESS UTILISE DES COOKIES
+        </h2>
+        <p className="mb-5 text-blackTextColor">
+          KIESS utilise des cookies et des technologies similaires pour vous
+          proposer une expérience en ligne et des publicités aussi
+          personnalisées que possible, mais aussi pour analyser notre trafic
+          web. Clique sur «Ok» si vous acceptez tous les cookies. Vous pouvez
+          aussi choisir quels types de cookies tu acceptes en cliquant sur «Je
+          veux choisir» Enfin, pour en savoir plus, n'hésitez pas à consulter
+          notre avis sur les cookies {""}
+          <a href="/Conditions" className="underline">
+            notre avis sur les cookies
+          </a>
+          .
+        </p>
+        <div className="flex gap-5">
+          <button
+            onClick={handleDecline}
+            className="w-buttonsCookiesWidth block border border-solid border-black"
+          >
+            <p className="font-semibold text-blackTextColor">
+              {" "}
+              REFUSER LES COOKIES
+            </p>
+          </button>
+          <button
+            onClick={handleAccept}
+            className=" w-buttonsCookiesWidth block border border-solid border-black bg-gradient-to-r from-kiessColor to-pinkKiess py-2"
+          >
+            <p className=" font-semibold text-white">J'ACCEPTE</p>
+          </button>
+        </div>
       </div>
-      <h2 style={{ color: "#343a40", margin: "0 0 20px 0" }}>
-        Consentement aux Cookies
-      </h2>
-      <p
-        style={{
-          margin: "0 0 20px 0",
-          fontSize: "16px",
-          lineHeight: "1.5",
-          textAlign: "left",
-        }}
-      >
-        Kiess Inc et ses partenaires utilisent des cookies pour améliorer votre
-        expérience, analyser le trafic, et personnaliser les publicités. En
-        utilisant notre site, vous acceptez notre utilisation de cookies pour
-        ces objectifs. Vous pouvez choisir d'accepter, personnaliser vos
-        préférences ou naviguer sans accepter les cookies non essentiels. Vos
-        choix sont modifiables à tout moment via les paramètres de votre compte.
-        Vous pouvez voir nos{" "}
-        <a
-          href="/Conditions"
-          style={{
-            color: "#db1262",
-            textDecoration: "none",
-            fontWeight: "bold",
-          }}
-        >
-          politique de cookies
-        </a>
-        .
-      </p>
-
-      <button
-        onClick={handleAccept}
-        style={{
-          backgroundColor: "#db1262",
-          color: "white",
-          border: "none",
-          padding: "12px 25px",
-          cursor: "pointer",
-          borderRadius: "5px",
-          fontSize: "18px",
-          fontWeight: "bold",
-          boxShadow: "0 2px 5px rgba(0,0,0,0.2)",
-        }}
-      >
-        Accepter
-      </button>
     </div>
   );
 };

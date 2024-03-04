@@ -14,7 +14,10 @@ export default {
         "secondKiessColor": "#F60F24",
         "blackTextColor": "#262626",
         "inputColor": "#EEEEEE",
-        "pinkKiess": "#E3364A"
+        "pinkKiess": "#E3364A",
+        "greyKiess": "#fffff",
+        "formGrey": "#1E1E1E"
+
       },
       gap: {
         "40%": "40%",
@@ -42,6 +45,7 @@ export default {
         "tendencyTendencyWidth": "500px",
         "tendencyTextWidth": "450px",
         "tendencyTextMobile": "200px",
+        "buttonsCookiesWidth": "49%"
 
 
       },
