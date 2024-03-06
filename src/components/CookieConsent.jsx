@@ -68,7 +68,7 @@ const CookieConsent = () => {
         <div className="flex gap-5">
           <button
             onClick={handleDecline}
-            className="w-buttonsCookiesWidth block border border-solid border-black"
+            className="block w-buttonsCookiesWidth border border-solid border-black"
           >
             <p className="font-semibold text-blackTextColor">
               {" "}
@@ -77,7 +77,7 @@ const CookieConsent = () => {
           </button>
           <button
             onClick={handleAccept}
-            className=" w-buttonsCookiesWidth block border border-solid border-black bg-gradient-to-r from-kiessColor to-pinkKiess py-2"
+            className=" block w-buttonsCookiesWidth border border-solid border-black bg-gradient-to-r from-kiessColor to-pinkKiess py-2"
           >
             <p className=" font-semibold text-white">J'ACCEPTE</p>
           </button>
