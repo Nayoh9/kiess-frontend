@@ -9,6 +9,8 @@ import Footer from "../components/Footer";
 const Contact = () => {
   const [files, setFiles] = useState([]);
 
+  const handleSubmit = (e) => {};
+
   return (
     <main className="flex min-h-mainHeight justify-center font-jost">
       <motion.section
@@ -22,7 +24,7 @@ const Contact = () => {
             <span className="border-b-2 border-solid">Env</span>oyer une demande
           </h1>
 
-          <form className=" text-blackTextColor">
+          <form className=" text-blackTextColor" onSubmit={handleSubmit}>
             <div className="ml-10 flex w-3/4 flex-col gap-1 ">
               <label htmlFor="mail">
                 Adresse e-mail<span className="text-red-400">*</span>
