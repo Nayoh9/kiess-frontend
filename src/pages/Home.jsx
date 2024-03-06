@@ -1,5 +1,5 @@
 // utils
-import baseUrl from "../baseurl";
+import baseUrl from "../baseUrl";
 
 // Components import
 import Footer from "../components/Footer";
