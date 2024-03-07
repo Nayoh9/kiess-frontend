@@ -8,6 +8,7 @@ import Footer from "../components/Footer";
 
 const Contact = () => {
   const [files, setFiles] = useState([]);
+  const [copyFiles, setCopyFiles] = useState([]);
 
   const handleSubmit = (e) => {};
 
@@ -72,12 +73,32 @@ const Contact = () => {
                 className="rounded-xl border border-solid border-inputColor pl-3"
                 id="telephone"
               />
+
               <label htmlFor="file">
                 Pièces jointes{" "}
                 <span className="text-slate-400">(valeur facultative)</span>
                 <div className="flex justify-center rounded-xl border border-solid border-inputColor pl-3 ">
                   <MyDropzone setFiles={setFiles} files={files} />
                 </div>
+                {files.map((file) => (
+                  <li key={file.path}>
+                    {file.path} - {file.size} bytes{" "}
+                    <span
+                      onClick={() => {
+                        const copyFiles = [...files];
+                        for (let i = 0; i < copyFiles.length; i++) {
+                          if (copyFiles[i].path === file.path) {
+                            copyFiles.splice(i, 1);
+                          }
+                        }
+                        setFiles(copyFiles);
+                        setCopyFiles(copyFiles);
+                      }}
+                    >
+                      x
+                    </span>
+                  </li>
+                ))}
               </label>
 
               <div className="flex justify-end">
@@ -108,7 +129,7 @@ function MyDropzone({ setFiles, files }) {
       reader.onerror = () => console.log("file reading has failed");
       reader.onload = () => {
         const binaryStr = reader.result;
-        // console.log(binaryStr);
+        console.log(binaryStr);
       };
       reader.readAsDataURL(file);
       // console.log(file);
@@ -125,18 +146,18 @@ function MyDropzone({ setFiles, files }) {
 
   return (
     <div {...getRootProps()}>
-      <input {...getInputProps()} />
+      <input
+        {...getInputProps()}
+        onChange={() => {
+          console.log("hello");
+        }}
+      />
       <p className="text-green-400">
         Ajouter un fichier{" "}
         <span className="text-slate-400">
           ou faites glisser les fichiers ici
         </span>
       </p>
-      {files.map((file) => (
-        <li key={file.path}>
-          {file.path} - {file.size} bytes
-        </li>
-      ))}
     </div>
   );
 }
