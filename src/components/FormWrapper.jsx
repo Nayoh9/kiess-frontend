@@ -1,3 +1,7 @@
+// Utils import
+import baseUrl from "../baseUrl";
+
+// Package import
 import React, { forwardRef, useEffect } from "react";
 
 const FormWrapper = forwardRef(({ array, setter, isOpen, setIsOpen }, ref) => {
@@ -13,7 +17,7 @@ const FormWrapper = forwardRef(({ array, setter, isOpen, setIsOpen }, ref) => {
     return () => {
       document.removeEventListener("mousedown", handler);
     };
-  }, [isOpen]);
+  }, [isOpen, ref, setIsOpen]);
 
   return (
     <div ref={ref} className="absolute z-20 flex w-full flex-col bg-slate-600">

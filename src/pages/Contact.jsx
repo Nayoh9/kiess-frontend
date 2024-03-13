@@ -1,7 +1,11 @@
+// Utils import
+import baseUrl from "../baseUrl";
+
 // Package import
 import { motion } from "framer-motion";
 import React, { useCallback, useRef, useState } from "react";
 import { useDropzone } from "react-dropzone";
+import axios from "axios";
 
 // Components imports
 import Footer from "../components/Footer";
@@ -12,7 +16,7 @@ const Contact = () => {
 
   const [isOpenSubscribe, setIsOpenSubscribe] = useState(false);
   const [subscribe, setSubscribe] = useState("-");
-  const subscribeChoices = ["oui", "non"];
+  const subscribeChoices = ["Oui", "Non"];
 
   const [isOpenQuestion, setIsOpenQuestion] = useState(false);
   const [question, setQuestion] = useState("-");
@@ -22,8 +26,22 @@ const Contact = () => {
     "Signaler un bug ?",
   ];
 
-  const subscribeRef = useRef(null);
-  const questionRef = useRef(null);
+  const formRef = useRef(null);
+
+  const [formDetails, setFormDetails] = useState({
+    email: "",
+    description: "",
+    tel: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormDetails((prev) => {
+      return { ...prev, [name]: value };
+    });
+
+    console.log(name, value);
+  };
 
   const handleOpenSubscribe = () => {
     setIsOpenSubscribe(true);
@@ -34,9 +52,33 @@ const Contact = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    try {
+      e.preventDefault();
 
-    const response = await fetch("");
+      console.log(files);
+
+      const formData = new FormData();
+      formData.append("email", formDetails.email);
+      formData.append("subscriber", subscribe === "Oui" ? true : false);
+      formData.append("question", question);
+      formData.append("description", formDetails.description);
+      formData.append("tel", formDetails.tel);
+      files.forEach((file) => {
+        formData.append("screenshot", file);
+      });
+
+      const response = await axios.post(
+        `${baseUrl}/contact/request`,
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        },
+      );
+
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -61,7 +103,9 @@ const Contact = () => {
               <input
                 type="email"
                 id="mail"
+                name="email"
                 className=" rounded-xl border border-solid border-inputColor pl-3"
+                onChange={handleChange}
               />
 
               <label htmlFor="subscribe">
@@ -69,17 +113,20 @@ const Contact = () => {
               </label>
 
               <div className="relative">
-                <p
-                  className="h-7 rounded-xl border border-solid border-inputColor pl-3"
+                <input
+                  type="text"
+                  id="subscribe"
+                  readOnly={true}
+                  className="h-7 w-full rounded-xl border border-solid border-inputColor pl-3"
                   onClick={handleOpenSubscribe}
-                >
-                  {subscribe}
-                </p>
+                  value={subscribe}
+                />
+
                 {isOpenSubscribe && (
                   <FormWrapper
                     array={subscribeChoices}
                     setter={setSubscribe}
-                    ref={subscribeRef}
+                    ref={formRef}
                     isOpen={isOpenSubscribe}
                     setIsOpen={setIsOpenSubscribe}
                   />
@@ -91,18 +138,19 @@ const Contact = () => {
               </label>
 
               <div className="relative z-10">
-                <p
-                  className="h-7 rounded-xl border border-solid border-inputColor pl-3"
+                <input
+                  className="h-7 w-full rounded-xl border border-solid border-inputColor pl-3"
                   onClick={handleOpenQuestion}
-                >
-                  {question}
-                </p>
+                  id="question"
+                  value={question}
+                  readOnly={true}
+                />
 
                 {isOpenQuestion && (
                   <FormWrapper
                     array={questionChoices}
                     setter={setQuestion}
-                    ref={questionRef}
+                    ref={formRef}
                     isOpen={isOpenQuestion}
                     setIsOpen={setIsOpenQuestion}
                   />
@@ -117,7 +165,9 @@ const Contact = () => {
                 id="description"
                 cols="30"
                 rows="10"
+                name="description"
                 className="rounded-xl border border-solid border-inputColor pl-3 pt-3"
+                onChange={handleChange}
               ></textarea>
 
               <p className="text-md text-slate-400">
@@ -134,6 +184,8 @@ const Contact = () => {
                 type="tel"
                 className="rounded-xl border border-solid border-inputColor pl-3"
                 id="telephone"
+                name="tel"
+                onChange={handleChange}
               />
 
               <label htmlFor="file">
@@ -142,10 +194,10 @@ const Contact = () => {
                 <div className="flex justify-center rounded-xl border border-solid border-inputColor pl-3 ">
                   <MyDropzone setFiles={setFiles} files={files} />
                 </div>
-                {files.map((file) => (
+                {files.map((file, index) => (
                   <li key={file.path}>
                     {file.path} - {file.size} bytes{" "}
-                    <span
+                    <button
                       onClick={() => {
                         const copyFiles = [...files];
                         for (let i = 0; i < copyFiles.length; i++) {
@@ -157,7 +209,7 @@ const Contact = () => {
                       }}
                     >
                       x
-                    </span>
+                    </button>
                   </li>
                 ))}
               </label>
@@ -184,7 +236,9 @@ function MyDropzone({ setFiles, files }) {
     acceptedFiles.forEach((file) => {
       const reader = new FileReader();
 
-      setFiles(acceptedFiles);
+      setFiles((prev) => {
+        return [...prev, file];
+      });
 
       reader.onabort = () => console.log("file reading was aborted");
       reader.onerror = () => console.log("file reading has failed");
@@ -207,12 +261,8 @@ function MyDropzone({ setFiles, files }) {
 
   return (
     <div {...getRootProps()}>
-      <input
-        {...getInputProps()}
-        onChange={() => {
-          console.log("hello");
-        }}
-      />
+      <input {...getInputProps({ type: "file" })} />
+
       <p className="text-green-400">
         Ajouter un fichier{" "}
         <span className="text-slate-400">

@@ -3,10 +3,6 @@ import baseUrl from "../baseUrl";
 
 // Components import
 import Footer from "../components/Footer";
-import React, { useEffect, useState } from "react";
-import { motion, useAnimation } from "framer-motion";
-import { Link } from "react-router-dom";
-import { Checkbox } from "@nextui-org/react";
 
 // Import package
 import {
@@ -14,6 +10,10 @@ import {
   MouseParallaxChild,
 } from "react-parallax-mouse";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { motion, useAnimation } from "framer-motion";
+import { Link } from "react-router-dom";
+import { Checkbox } from "@nextui-org/react";
 
 const Home = () => {
   const controls = useAnimation();
