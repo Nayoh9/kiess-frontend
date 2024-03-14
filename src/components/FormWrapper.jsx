@@ -1,6 +1,3 @@
-// Utils import
-import baseUrl from "../baseUrl";
-
 // Package import
 import React, { forwardRef, useEffect } from "react";
 
@@ -20,18 +17,21 @@ const FormWrapper = forwardRef(({ array, setter, isOpen, setIsOpen }, ref) => {
   }, [isOpen, ref, setIsOpen]);
 
   return (
-    <div ref={ref} className="absolute z-20 flex w-full flex-col bg-slate-600">
+    <div
+      ref={ref}
+      className="absolute z-20 flex w-full flex-col items-start border border-solid bg-white"
+    >
       {array.map((e, index) => (
-        <p
+        <button
           key={index}
-          className="pl-1 text-black hover:bg-blue-500"
+          className="w-full pl-1 text-left text-blackTextColor hover:bg-kiessColor"
           onClick={() => {
             setter(e);
             setIsOpen(false);
           }}
         >
           {e}
-        </p>
+        </button>
       ))}
     </div>
   );

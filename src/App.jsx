@@ -1,8 +1,11 @@
 // Package import
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
-import { motion } from "framer-motion";
+import {
+  faBars,
+  faXmark,
+  faCaretDown,
+} from "@fortawesome/free-solid-svg-icons";
 
 // Assets import
 import "./App.css";
@@ -17,7 +20,7 @@ import Features from "./pages/Features";
 import Conditions from "./pages/Conditions";
 import Contact from "./pages/Contact";
 
-library.add(faBars, faXmark);
+library.add(faBars, faXmark, faCaretDown);
 
 function App() {
   return (

@@ -47,12 +47,12 @@ const CookieConsent = () => {
   }
 
   return (
-    <div className="fixed bottom-0 z-30 flex h-2/5 flex-col items-center justify-center border-t border-solid border-kiessColor bg-white  font-jost">
-      <div className="w-2/3 max-tablet820px:w-3/4 ">
-        <h2 className=" mb-5 text-xl font-bold text-secondKiessColor ">
+    <div className="fixed bottom-0 z-30 flex flex-col  items-center justify-center border-t border-solid border-kiessColor bg-white py-20  font-jost  max-tablet820px:py-10">
+      <div className="w-2/3 px-4 max-tablet820px:w-full ">
+        <h2 className=" mb-5 text-xl font-bold text-secondKiessColor max-mobile:mb-1  max-mobile:text-medium">
           KIESS UTILISE DES COOKIES
         </h2>
-        <p className="mb-5 text-blackTextColor">
+        <p className="mb-5 text-blackTextColor max-mobile:text-sm ">
           KIESS utilise des cookies et des technologies similaires pour vous
           proposer une expérience en ligne et des publicités aussi
           personnalisées que possible, mais aussi pour analyser notre trafic
@@ -70,7 +70,7 @@ const CookieConsent = () => {
             onClick={handleDecline}
             className="block w-buttonsCookiesWidth border border-solid border-black"
           >
-            <p className="font-semibold text-blackTextColor">
+            <p className="font-semibold text-blackTextColor max-mobile:text-sm">
               {" "}
               REFUSER LES COOKIES
             </p>
@@ -79,7 +79,9 @@ const CookieConsent = () => {
             onClick={handleAccept}
             className=" block w-buttonsCookiesWidth  bg-gradient-to-r from-kiessColor to-pinkKiess py-2"
           >
-            <p className="font-semibold text-white">J'ACCEPTE</p>
+            <p className="font-semibold text-white max-mobile:text-sm">
+              J'ACCEPTE
+            </p>
           </button>
         </div>
       </div>

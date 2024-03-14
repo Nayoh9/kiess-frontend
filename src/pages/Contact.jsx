@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // Components imports
 import Footer from "../components/Footer";
@@ -56,8 +57,6 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-
-      console.log(files);
 
       const formData = new FormData();
       formData.append("email", formDetails.email);
@@ -121,7 +120,7 @@ const Contact = () => {
                 type="email"
                 id="mail"
                 name="email"
-                className=" rounded-xl border border-solid border-inputColor pl-3"
+                className=" rounded-2xl border border-solid border-inputColor py-1 pl-3"
                 onChange={handleChange}
               />
 
@@ -134,11 +133,16 @@ const Contact = () => {
                   type="text"
                   id="subscribe"
                   readOnly={true}
-                  className="h-7 w-full rounded-xl border border-solid border-inputColor pl-3"
+                  className="w-full rounded-2xl border border-solid border-inputColor py-1 pl-3"
                   onClick={handleOpenSubscribe}
                   value={subscribe}
                 />
 
+                <FontAwesomeIcon
+                  icon="fa-solid fa-caret-down"
+                  className="absolute right-5 top-2 w-1 "
+                  onClick={handleOpenSubscribe}
+                />
                 {isOpenSubscribe && (
                   <FormWrapper
                     array={subscribeChoices}
@@ -156,11 +160,16 @@ const Contact = () => {
 
               <div className="relative z-10">
                 <input
-                  className="h-7 w-full rounded-xl border border-solid border-inputColor pl-3"
+                  className=" w-full rounded-2xl border border-solid border-inputColor py-1 pl-3"
                   onClick={handleOpenQuestion}
                   id="question"
                   value={question}
                   readOnly={true}
+                />
+                <FontAwesomeIcon
+                  icon="fa-solid fa-caret-down"
+                  className="absolute right-5 top-2 w-1 "
+                  onClick={handleOpenQuestion}
                 />
 
                 {isOpenQuestion && (
@@ -199,7 +208,7 @@ const Contact = () => {
 
               <input
                 type="tel"
-                className="rounded-xl border border-solid border-inputColor pl-3"
+                className="rounded-2xl border border-solid border-inputColor py-1 pl-3"
                 id="telephone"
                 name="tel"
                 onChange={handleChange}
@@ -208,7 +217,7 @@ const Contact = () => {
               <label htmlFor="file">
                 Pièces jointes{" "}
                 <span className="text-slate-400">(valeur facultative)</span>
-                <div className="flex justify-center rounded-xl border border-solid border-inputColor pl-3 ">
+                <div className="flex justify-center rounded-2xl border border-solid border-inputColor py-1 pl-3 ">
                   <MyDropzone setFiles={setFiles} files={files} />
                 </div>
                 {files.map((file, index) => (
