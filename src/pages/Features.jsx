@@ -24,9 +24,7 @@ const Features = () => {
             className=" ml-3 w-1/2 max-tablet820px:ml-0 max-tablet820px:w-tendencyTextWidth max-tablet820px:pl-20 max-mobile:ml-0 max-mobile:w-4/5 max-mobile:pl-5"
           >
             <div>
-              <p className="mb-2 text-5xl font-bold text-kiessColor">
-                Rencontre
-              </p>
+              <p className="text-5xl font-bold text-kiessColor">Rencontre</p>
               <p className="mb-2 text-5xl font-bold text-kiessColor">
                 à l'aveugle
               </p>
@@ -87,10 +85,8 @@ const Features = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1.5, ease: "easeInOut" }}
             >
-              <p className="mb-2 text-5xl font-semibold text-kiessColor">
-                +150
-              </p>
-              <p className="mb-2 text-3xl font-semibold text-kiessColor">
+              <p className="text-5xl font-semibold text-kiessColor">+150</p>
+              <p className=" text-3xl font-semibold text-kiessColor">
                 Badges pour vous décrire
               </p>
 
@@ -114,11 +110,11 @@ const Features = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1.5, ease: "easeInOut" }}
             >
-              <p className="mb-2 text-5xl font-semibold text-kiessColor">
+              <p className=" text-5xl font-semibold text-kiessColor">
                 Matchmaking
               </p>
               <p className="text-3xl font-semibold text-kiessColor">
-                Juste pour vous
+                juste pour vous
               </p>
 
               <p className="mb-5 text-lg text-blackTextColor">
