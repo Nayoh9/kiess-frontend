@@ -16,8 +16,6 @@ export default {
         "inputColor": "#EEEEEE",
         "pinkKiess": "#E3364A",
         "greyKiess": "#fffff",
-        "formGrey": "#1E1E1E"
-
       },
       gap: {
         "40%": "40%",

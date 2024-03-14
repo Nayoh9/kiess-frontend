@@ -48,7 +48,7 @@ const CookieConsent = () => {
 
   return (
     <div className="fixed bottom-0 z-30 flex h-2/5 flex-col items-center justify-center border-t border-solid border-kiessColor bg-white  font-jost">
-      <div className="w-2/3 ">
+      <div className="w-2/3 max-tablet820px:w-3/4 ">
         <h2 className=" mb-5 text-xl font-bold text-secondKiessColor ">
           KIESS UTILISE DES COOKIES
         </h2>
@@ -77,9 +77,9 @@ const CookieConsent = () => {
           </button>
           <button
             onClick={handleAccept}
-            className=" block w-buttonsCookiesWidth border border-solid border-black bg-gradient-to-r from-kiessColor to-pinkKiess py-2"
+            className=" block w-buttonsCookiesWidth  bg-gradient-to-r from-kiessColor to-pinkKiess py-2"
           >
-            <p className=" font-semibold text-white">J'ACCEPTE</p>
+            <p className="font-semibold text-white">J'ACCEPTE</p>
           </button>
         </div>
       </div>

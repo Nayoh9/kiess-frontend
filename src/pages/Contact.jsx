@@ -3,7 +3,7 @@ import baseUrl from "../baseUrl";
 
 // Package import
 import { motion } from "framer-motion";
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import axios from "axios";
 
@@ -12,6 +12,7 @@ import Footer from "../components/Footer";
 import FormWrapper from "../components/formWrapper";
 
 const Contact = () => {
+  const [windowWidth, setWindowWidth] = useState();
   const [files, setFiles] = useState([]);
 
   const [isOpenSubscribe, setIsOpenSubscribe] = useState(false);
@@ -24,6 +25,7 @@ const Contact = () => {
     "Pourquoi ça marche pas ?",
     "J'ai perdu mon compte ?",
     "Signaler un bug ?",
+    "Autre question",
   ];
 
   const formRef = useRef(null);
@@ -81,6 +83,18 @@ const Contact = () => {
     }
   };
 
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [windowWidth]);
+
   return (
     <main className="flex min-h-mainHeight justify-center font-jost">
       <motion.section
@@ -89,12 +103,15 @@ const Contact = () => {
         transition={{ duration: 1.5, ease: "easeInOut" }}
         className="flex flex-col items-center"
       >
-        <div className=" w-2/5 bg-white">
-          <h1 className="font m-5 mb-10 text-3xl ">
-            <span className="border-b-2 border-solid">Env</span>oyer une demande
+        <div className=" my-10 w-2/5 max-w-2xl bg-white max-screen1260px:w-2/4 max-tablet820px:w-3/4">
+          <h1 className="font m-5 mb-10 text-3xl max-mobile:text-xl ">
+            <span className="border-b-2 border-solid max-mobile:text-xl">
+              Env
+            </span>
+            oyer une demande
           </h1>
 
-          <form className=" text-blackTextColor" onSubmit={handleSubmit}>
+          <form className="  text-blackTextColor" onSubmit={handleSubmit}>
             <div className="ml-10 flex w-3/4 flex-col gap-1 ">
               <label htmlFor="mail">
                 Adresse e-mail<span className="text-red-400">*</span>
@@ -164,13 +181,13 @@ const Contact = () => {
               <textarea
                 id="description"
                 cols="30"
-                rows="10"
+                rows={window.innerWidth < 500 ? "5" : "10"}
                 name="description"
                 className="rounded-xl border border-solid border-inputColor pl-3 pt-3"
                 onChange={handleChange}
               ></textarea>
 
-              <p className="text-md text-slate-400">
+              <p className="text-md ">
                 Saisissez les details de votre demande. Un membre de notre
                 équipe d'assistance répondrea dans les plus brefs délais.
               </p>
